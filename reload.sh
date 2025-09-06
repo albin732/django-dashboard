@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-DOCKER_COMPOSE_CMD="docker-compose"
+DOCKER_COMPOSE_CMD="docker compose"
 
 echo "♻️ Rebuilding web only..."
 $DOCKER_COMPOSE_CMD build web
