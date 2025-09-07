@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("SECRET_KEY")
 DEBUG = config("DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "[::1]", "10.216.159.123", "*"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "[::1]", "10.216.159.251", "*"]
 
 
 # Application definition
