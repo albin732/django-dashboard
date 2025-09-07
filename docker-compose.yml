@@ -6,12 +6,13 @@ services:
     command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - .:/app
-    ports:
-      - "8000:8000"
+      - static_volume:/app/static
     env_file:
       - .env
     depends_on:
       - db
+    networks:
+      - dashboard-net
 
   db:
     image: postgres:15
@@ -21,6 +22,8 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - dashboard-net
 
   nginx:
     image: nginx:latest
@@ -28,8 +31,15 @@ services:
       - "80:80"
     volumes:
       - ./nginx:/etc/nginx/conf.d
+      - static_volume:/static
     depends_on:
       - web
+    networks:
+      - dashboard-net
 
 volumes:
   postgres_data:
+  static_volume:
+
+networks:
+  dashboard-net:
