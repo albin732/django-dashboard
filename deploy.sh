@@ -22,3 +22,8 @@ $DOCKER_COMPOSE_CMD exec -T web python manage.py collectstatic --noinput
 
 echo "✅ Done! Showing recent logs:"
 $DOCKER_COMPOSE_CMD logs --tail=30 web
+
+echo "👤 Ensuring superuser exists..."
+$DOCKER_COMPOSE_CMD exec -T web \
+  python manage.py createsuperuser \
+  --noinput || true
